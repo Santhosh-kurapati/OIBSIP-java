@@ -34,7 +34,7 @@ class Bank_operations {
 
 	public boolean Acc_login(){
         Scanner sc = new Scanner (System.in);
-        
+
         boolean login = false;
         System.out.println("Enter the USerID");
         String User_ID  = sc.next();
@@ -70,19 +70,22 @@ class Bank_operations {
         String trans_acc = sc.next();
         System.out.println("Enter amount to transfer");
         int trans_amount = sc.nextInt();
-        if (trans_acc.length()==10){
-            System.out.println("You entered transfer account is incorrect.");
-        }
-        else if (trans_amount>balance){
-            System.out.println("You have insufficient balance in your account.Please check balance");
-        }
-        else{
-            System.out.println("Rs."+ trans_amount+" is transferred"+ trans_acc+" from your account");
+        if (trans_acc.length()==10 && trans_amount<=balance){
+            System.out.println("You entered transfer account number is correct.");
+            System.out.println("Rs."+ trans_amount+" is transferred account number as "+ trans_acc+" from your account");
             balance -= trans_amount;
             transactions++;
             String str = "\nRs."+ trans_amount+" is transferred from your bank account to "+ trans_acc;
             Transaction_History += str;
+
         }
+        else if (trans_acc.length()!=10){
+            System.out.println("You entered Wrong acccount number.Please check it once.");
+        }
+        else  {
+            System.out.println("You have insufficient balance in your account.Please check balance");
+        }
+        
     }
     public void transHistory(){
         if (transactions==0)
@@ -112,10 +115,10 @@ class Bank_operations {
 }
 public class ATM{
     public static void main(String[] args) {
-        
+
 
         Scanner sc = new Scanner(System.in);
-        System.out.println("\n********WELCOME TO  ATM SYSTEM********\n");
+        System.out.println("\n**********WELCOME TO  ATM SYSTEM**********\n");
         System.out.println("1.Register \n2.Exit");
         System.out.print("Enter Your Choice - ");
         int choice = sc.nextInt();
@@ -137,7 +140,7 @@ public class ATM{
                 {
                     if (b.Acc_login()) {
                         System.out.println("\n\n**********WELCOME BACK " + b.User_Name + " **********\n");
-                    
+
                         while (true) {
                             System.out.println("\n1.Withdraw \n2.Deposit \n3.Transfer \n4.Check Balance \n5.Transaction History \n6.Exit");
                             System.out.print("\nEnter Your Choice - ");
@@ -160,24 +163,24 @@ public class ATM{
                                 break;
                                 default :
                                 System.exit(0);
-                    
+
                             }
                         }
                     }
                     else {
                         System.exit(0);
                     }
-            
+
                 }
                 else if (ch==2) {
                     System.exit(0);
                 }
-            
+
             }
         }
         else {
             System.exit(0);
-        }
+        }
 
-    }
+    }
 }
